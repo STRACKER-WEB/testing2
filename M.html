@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login • $TRACKER</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --primary:#1877f2;
+  --primary-dark:#0f5ec3;
+  --bg:#0f172a;
+  --card:rgba(255,255,255,0.08);
+  --text:#f1f5f9;
+  --muted:#94a3b8;
+  --success:#22c55e;
+  --danger:#ef4444;
+}
+*{ box-sizing:border-box; margin:0; padding:0; }
+body{
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: var(--text);
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:24px;
+}
+.shell{
+  width:100%;
+  max-width:1100px;
+  display:grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap:28px;
+  align-items:center;
+  animation: fadeInUp 1.2s ease;
+}
+@media (max-width: 960px){
+  .shell{ grid-template-columns: 1fr; }
+}
+/* Left: Intro */
+.intro{ padding:8px 4px; }
+.brand{
+  font-weight:800;
+  font-size: clamp(34px, 6vw, 54px);
+  letter-spacing:-0.02em;
+  color: #3b82f6;
+  line-height:1.05;
+  margin-bottom:14px;
+  text-shadow: 0 0 20px rgba(59,130,246,0.5);
+}
+.tagline{
+  font-size: clamp(16px, 2.2vw, 20px);
+  color: var(--muted);
+  max-width: 48ch;
+  line-height:1.6;
+}
+.feature{
+  margin-top:24px;
+  background: var(--card);
+  border-radius:16px;
+  padding:20px 22px;
+  backdrop-filter: blur(16px);
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 10px 40px rgba(0,0,0,.25);
+  animation: fadeIn 1.5s ease;
+}
+.feature h3{ font-size:20px; margin-bottom:8px; }
+.feature p{ color:var(--muted); line-height:1.6; margin-bottom:14px; }
+.feature a.button{
+  display:inline-block;
+  background:linear-gradient(135deg, #3b82f6, #06b6d4);
+  color:#fff;
+  text-decoration:none;
+  padding:12px 18px;
+  border-radius:12px;
+  font-weight:600;
+  transition: all .3s ease;
+  box-shadow:0 6px 15px rgba(59,130,246,0.35);
+}
+.feature a.button:hover{
+  transform: translateY(-2px);
+  box-shadow:0 10px 25px rgba(59,130,246,0.45);
+}
+
+/* Copyright section */
+.feature .copyright {
+  margin-top:20px;
+  text-align:left;
+  color: var(--muted);
+  font-size:13px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.feature .copyright-images {
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.feature .copyright-images img {
+  height:30px;
+  width:auto;
+  border-radius:6px;
+}
+
+/* Right: Login card */
+.card{
+  background: var(--card);
+  border-radius:18px;
+  padding:32px;
+  backdrop-filter: blur(18px);
+  border:1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 15px 50px rgba(0,0,0,.35);
+  animation: fadeInUp 1.5s ease;
+}
+.card h2{ font-size:22px; margin-bottom:16px; font-weight:700; }
+form{ display:grid; gap:14px; }
+label{
+  font-size:13px;
+  font-weight:600;
+  color:#cbd5e1;
+  margin-bottom:4px;
+  display:block;
+}
+input{
+  width:100%;
+  padding:14px 13px;
+  border-radius:12px;
+  border:1.5px solid rgba(255,255,255,0.2);
+  font-size:15px;
+  outline:none;
+  transition:border-color .15s ease, box-shadow .15s ease;
+  background:rgba(255,255,255,0.08);
+  color:#f8fafc;
+}
+input::placeholder{ color:#94a3b8; }
+input:focus{
+  border-color: var(--primary);
+  box-shadow: 0 0 12px rgba(24,119,242,.5);
+}
+.password-wrap{ position:relative; }
+.toggle{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  border:none;
+  background:transparent;
+  font-size:13px;
+  color:#60a5fa;
+  font-weight:700;
+  cursor:pointer;
+}
+.actions{ display:grid; gap:12px; margin-top:8px; }
+.btn{
+  border:none;
+  border-radius:12px;
+  padding:14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s ease;
+}
+.btn-primary{
+  background:linear-gradient(135deg, #3b82f6, #06b6d4);
+  color:#fff;
+  box-shadow:0 6px 15px rgba(59,130,246,0.35);
+}
+.btn-primary:hover{
+  transform: translateY(-2px);
+  box-shadow:0 10px 25px rgba(59,130,246,0.45);
+}
+.btn-secondary{
+  background:rgba(255,255,255,0.15);
+  color:#e2e8f0;
+}
+.btn-secondary:hover{ background:rgba(255,255,255,0.25); }
+.hint, .madeby{
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+  margin-top:10px;
+}
+.madeby{ margin-top:18px; }
+.alert{
+  margin-top:6px;
+  padding:10px 12px;
+  border-radius:10px;
+  font-size:14px;
+  display:none;
+}
+.alert.success{
+  background:rgba(34,197,94,0.15);
+  color:#22c55e;
+  border:1px solid rgba(34,197,94,0.3);
+}
+.alert.error{
+  background:rgba(239,68,68,0.15);
+  color:#f87171;
+  border:1px solid rgba(239,68,68,0.3);
+}
+/* Loading spinner */
+.spinner{
+  width:18px;
+  height:18px;
+  border:3px solid rgba(255,255,255,.3);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin 0.8s linear infinite;
+  display:inline-block;
+  vertical-align:middle;
+  margin-left:8px;
+}
+/* Animations */
+@keyframes fadeInUp{ from{ opacity:0; transform:translateY(30px);} to{ opacity:1; transform:translateY(0);} }
+@keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
+@keyframes spin{ to{ transform:rotate(360deg);} }
+</style>
+</head>
+<body>
+<div class="shell">
+  <!-- Intro / product side -->
+  <section class="intro">
+    <div class="brand">$TRACKER</div>
+    <p class="tagline">
+      Quick, clean insights about a phone number: country, carrier, and an approximate location.
+    </p>
+    <div class="feature">
+      <h3>What is $TRACKER?</h3>
+      <p>
+        This tool validates a phone number and shows useful public metadata for educational purposes. You’ll get a simple map pin and details like country and carrier.
+      </p>
+      <a class="button" href="./R.html">Contact Us</a>
+
+      <!-- Copyright section with 4 images -->
+      <div class="copyright">
+        <p>&copy; 2025 $HAUN Defense. All rights reserved.</p>
+        <div class="copyright-images">
+          <img src="TOR.JPG" alt="TOR Logo" />
+          <img src="$HAUN.PNG" alt="$HAUN Logo" />
+          <img src="n.PNG" alt="N Logo" />
+          <img src="g.PNG" alt="G Logo" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Login card -->
+  <section class="card" aria-labelledby="loginTitle">
+    <h2 id="loginTitle">Log in to your dashboard</h2>
+    <form id="loginForm" novalidate>
+      <div>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" placeholder="e.g. $TRACKER 1234" required />
+      </div>
+      <div class="password-wrap">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Enter password" required />
+        <button type="button" class="toggle" id="togglePass">SHOW</button>
+      </div>
+      <div class="row">
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        </div>
+        <div>
+          <label for="address">Address</label>
+          <input id="address" name="address" type="text" placeholder="Street, City" />
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="fullname">Full name</label>
+          <input id="fullname" name="fullname" type="text" placeholder="Your name" />
+        </div>
+        <div>
+          <label for="phone">Phone (optional)</label>
+          <input id="phone" name="phone" type="tel" placeholder="+1 415 555 0100" />
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" type="submit" id="loginBtn">Log In</button>
+        <button class="btn btn-secondary" type="reset">Clear</button>
+      </div>
+      <div id="alertOk" class="alert success" role="status">Welcome back! Redirecting…</div>
+      <div id="alertErr" class="alert error" role="alert">
+        Invalid credentials. Hint: username is <strong>$TRACKER XXXX</strong>, password is <strong>$TRACKER@XXXX</strong>.
+      </div>
+      <p class="hint">Education purpose only — no data is stored.</p>
+      <p class="madeby">Created by <strong>$HAUN DEFENSE</strong></p>
+    </form>
+  </section>
+</div>
+
+<script>
+const DEMO_USER = "$TRACKER ADMIN";
+const DEMO_PASS = "$TRACKER@1234";
+const form = document.getElementById("loginForm");
+const alertOk = document.getElementById("alertOk");
+const alertErr = document.getElementById("alertErr");
+const toggleBtn = document.getElementById("togglePass");
+const passwordField = document.getElementById("password");
+const loginBtn = document.getElementById("loginBtn");
+
+// Show/Hide password
+toggleBtn.addEventListener("click", () => {
+  const isPass = passwordField.type === "password";
+  passwordField.type = isPass ? "text" : "password";
+  toggleBtn.textContent = isPass ? "HIDE" : "SHOW";
+  passwordField.focus();
+});
+
+// Login form
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value.trim();
+
+  loginBtn.innerHTML = 'Logging in <span class="spinner"></span>';
+  setTimeout(() => {
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      alertErr.style.display = "block";
+      alertErr.textContent = "Please enter a valid email address.";
+      alertOk.style.display = "none";
+      loginBtn.textContent = "Log In";
+      return;
+    }
+    if (username === DEMO_USER && password === DEMO_PASS) {
+      alertErr.style.display = "none";
+      alertOk.style.display = "block";
+      loginBtn.textContent = "Log In ✅";
+      setTimeout(() => { window.location.href = "./P.html"; }, 1000);
+    } else {
+      alertOk.style.display = "none";
+      alertErr.style.display = "block";
+      alertErr.innerHTML = 'Invalid credentials. Hint: username is <strong>$TRACKER ADMIN</strong>, password is <strong>$TRACKER@1234</strong>.';
+      loginBtn.textContent = "Log In";
+    }
+  }, 900);
+});
+</script>
+</body>
+</html>

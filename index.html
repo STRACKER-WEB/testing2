@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choose Your Country</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1f2c34, #3a506b);
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Main container */
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border-radius: 25px;
+      padding: 60px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      max-width: 1100px;
+      width: 90%;
+      transition: transform 0.3s ease;
+    }
+    .container:hover { transform: scale(1.02); }
+
+    /* Left logo */
+    .logo {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-right: 60px;
+    }
+    .logo img {
+      width: 300px; /* bigger logo */
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* Right content */
+    .content {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .content h1 {
+      font-size: 3rem;
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.6);
+    }
+
+    .welcome-text {
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-align: center;
+      color: #ffd700;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+
+    .choose-text {
+      font-size: 1.5rem;
+      font-weight: 500;
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    /* Flag buttons */
+    .flags {
+      display: flex;
+      gap: 60px;
+    }
+    .flag-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .flag-item img {
+      width: 120px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      margin-bottom: 10px;
+    }
+    .flag-item:hover img { 
+      transform: scale(1.1);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    }
+    .flag-item span {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .container { flex-direction: column; padding: 40px; gap: 30px; }
+      .logo { padding-right: 0; margin-bottom: 20px; }
+      .flags { gap: 30px; }
+      .content h1 { font-size: 2.2rem; }
+      .welcome-text { font-size: 1.5rem; }
+      .choose-text { font-size: 1.2rem; }
+      .logo img { width: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="$HAUN.PNG" alt="HAUN Logo">
+    </div>
+    <div class="content">
+      <h1>WELCOME BACK!</h1>
+      <div class="choose-text">Choose Your Country</div>
+      <div class="flags">
+        <a class="flag-item" href="M.html">
+          <img src="us.PNG" alt="United States">
+          <span>United States</span>
+        </a>
+        <a class="flag-item" href="S.html">
+          <img src="sl.PNG" alt="Sri Lanka">
+          <span>Sri Lanka</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <footer>
+    &copy; 2025 $HAUN Defense. All rights reserved.
+  </footer>
+</body>
+</html>
